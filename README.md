@@ -87,7 +87,7 @@ Each item holds your file in its binary field and these facts in its JSON:
 - `replayed`: `true` when a retry got back a file made earlier
 - `idempotencyKey`: the retry key that the node sent
 
-We keep each file for 30 days. Save your own copy in a later step.
+How long we keep your file depends on your [plan](https://thirds.ai/pricing). If you need your own copy, save it in a later step.
 
 ## Help
 

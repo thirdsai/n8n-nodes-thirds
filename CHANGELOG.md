@@ -1,5 +1,9 @@
 # Changelog
 
+## 0.1.2
+
+- Say that how long we keep a file depends on your plan.
+
 ## 0.1.1
 
 - Use the "Marketing & Content" node category.
