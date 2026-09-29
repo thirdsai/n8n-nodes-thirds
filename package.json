@@ -1,5 +1,5 @@
 {
-	"name": "@thirds/n8n-nodes-thirds",
+	"name": "@thirds-ai/n8n-nodes-thirds",
 	"version": "0.1.0",
 	"description": "Make branded PDFs and images from your saved thirds.ai designs in n8n.",
 	"license": "MIT",

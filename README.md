@@ -12,14 +12,14 @@ You need n8n 1.0 or newer.
 
 1. Open **Settings**, then **Community Nodes**.
 2. Click **Install**.
-3. Type `@thirds/n8n-nodes-thirds` and click **Install**.
+3. Type `@thirds-ai/n8n-nodes-thirds` and click **Install**.
 
 ### With npm
 
 For a self-hosted n8n, run this in your n8n folder, which is usually `~/.n8n/nodes`:
 
 ```sh
-npm install @thirds/n8n-nodes-thirds
+npm install @thirds-ai/n8n-nodes-thirds
 ```
 
 Then restart n8n. n8n's guide to [installing community nodes](https://docs.n8n.io/integrations/community-nodes/installation-and-management/) has more ways to install.
