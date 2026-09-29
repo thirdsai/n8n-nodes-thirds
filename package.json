@@ -1,0 +1,58 @@
+{
+	"name": "@thirds/n8n-nodes-thirds",
+	"version": "0.1.0",
+	"description": "Make branded PDFs and images from your saved thirds.ai designs in n8n.",
+	"license": "MIT",
+	"homepage": "https://thirds.ai/docs",
+	"keywords": [
+		"n8n-community-node-package",
+		"n8n",
+		"thirds.ai",
+		"pdf",
+		"image",
+		"template"
+	],
+	"author": {
+		"name": "thirds.ai",
+		"email": "support@thirds.ai"
+	},
+	"repository": {
+		"type": "git",
+		"url": "git+https://github.com/thirdsai/n8n-nodes-thirds.git"
+	},
+	"publishConfig": {
+		"access": "public"
+	},
+	"scripts": {
+		"build": "n8n-node build",
+		"build:watch": "tsc --watch",
+		"dev": "n8n-node dev",
+		"lint": "n8n-node lint",
+		"lint:fix": "n8n-node lint --fix",
+		"release": "n8n-node release",
+		"prepublishOnly": "n8n-node prerelease"
+	},
+	"files": [
+		"dist"
+	],
+	"n8n": {
+		"n8nNodesApiVersion": 1,
+		"strict": true,
+		"credentials": [
+			"dist/credentials/ThirdsApi.credentials.js"
+		],
+		"nodes": [
+			"dist/nodes/Thirds/Thirds.node.js"
+		]
+	},
+	"devDependencies": {
+		"@n8n/node-cli": "0.50.2",
+		"eslint": "9.32.0",
+		"prettier": "3.6.2",
+		"release-it": "^19.0.4",
+		"typescript": "5.9.2"
+	},
+	"peerDependencies": {
+		"n8n-workflow": "*"
+	}
+}

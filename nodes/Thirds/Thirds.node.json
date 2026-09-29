@@ -1,0 +1,19 @@
+{
+	"node": "@thirds/n8n-nodes-thirds.thirds",
+	"nodeVersion": "1.0",
+	"codexVersion": "1.0",
+	"categories": ["Marketing", "Productivity"],
+	"alias": ["PDF", "Image", "Template", "Invoice", "Report", "Certificate", "Social post"],
+	"resources": {
+		"credentialDocumentation": [
+			{
+				"url": "https://thirds.ai/docs/api#authentication"
+			}
+		],
+		"primaryDocumentation": [
+			{
+				"url": "https://thirds.ai/docs"
+			}
+		]
+	}
+}
