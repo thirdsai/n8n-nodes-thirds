@@ -59,7 +59,8 @@ export class Thirds implements INodeType {
 				type: 'resourceLocator',
 				default: { mode: 'list', value: '' },
 				required: true,
-				description: 'The saved design to fill in',
+				description:
+					'Pick a template you made on thirds.ai. To make a new template or change one, open thirds.ai/studio. Your changes show up here the next time this node runs.',
 				modes: [
 					{
 						displayName: 'From List',
@@ -182,7 +183,7 @@ export class Thirds implements INodeType {
 						type: 'number',
 						typeOptions: { minValue: 200, maxValue: 4320 },
 						default: 720,
-						description: 'Leave this out to use the height of the template',
+						description: 'Leave width and height empty to use the size of your template',
 						displayOptions: { show: { '/operation': ['makeImage'] } },
 					},
 					{
@@ -248,7 +249,7 @@ export class Thirds implements INodeType {
 						type: 'number',
 						typeOptions: { minValue: 320, maxValue: 7680 },
 						default: 1280,
-						description: 'Leave this out to use the width of the template',
+						description: 'Leave width and height empty to use the size of your template',
 						displayOptions: { show: { '/operation': ['makeImage'] } },
 					},
 				],

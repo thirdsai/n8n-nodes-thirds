@@ -1,6 +1,8 @@
 # thirds.ai node for n8n
 
-Send out branded PDFs and images straight from your n8n workflows. You save a design once in [thirds.ai](https://thirds.ai), such as an invoice, a client report, or a social post, with your logo, colours, and fonts. Then this node fills it with the data from each workflow run and hands you the finished file.
+Send out branded PDFs and images straight from your n8n workflows. You make and edit your templates on [thirds.ai](https://thirds.ai/studio), such as an invoice, a client report, or a social post, with your logo, colours, and fonts. This node fills a template with your data from each workflow run and hands you the finished PDF or image.
+
+To make a new template or change one, open [thirds.ai/studio](https://thirds.ai/studio). You can also start from one of our [ready-made templates](https://thirds.ai/gallery). Your changes show up in n8n the next time the node runs.
 
 A new order can become an invoice PDF, and a new row in a sheet can become a social image. Each file comes back as n8n binary data, so the next step can email it, upload it, or post it.
 
@@ -54,7 +56,7 @@ If your template doesn't list its fields, choose **Use JSON** and type the value
 
 ## Make an image
 
-**Make an image** works the same way and gives you a PNG, JPEG, or WebP. The picture is the size of your design, so a square post stays square. To pick another size, add **Width (Pixels)** and **Height (Pixels)** under **Options**.
+**Make an image** works the same way and gives you a PNG, JPEG, or WebP. Leave width and height empty to use the size of your template, so a square post stays square. To pick another size, add **Width (Pixels)** and **Height (Pixels)** under **Options**.
 
 ## Options
 

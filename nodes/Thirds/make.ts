@@ -29,7 +29,7 @@ type Job = {
 	[key: string]: unknown;
 };
 
-type TemplateFacts = { version: number; canvas?: { width: number; height: number } };
+type TemplateFacts = { version: number };
 
 /** Facts about a template version, read once for each execution. */
 export type TemplateCache = Map<string, Promise<TemplateFacts>>;
@@ -37,31 +37,13 @@ export type TemplateCache = Map<string, Promise<TemplateFacts>>;
 const TEMPLATE_ID = /^tpl_[0-9a-f]{32}$/;
 
 const FAILURE_MESSAGES: Record<string, string> = {
-	invalid_input: "The file couldn't be made from this template and data. Check the design.",
-	unsafe_asset: 'The design uses a picture or font from an address we block.',
-	resource_limit: 'The file is too big to make. Make the design or data smaller.',
-	timeout: 'The file took too long to make. Make the design simpler.',
+	invalid_input: "The file couldn't be made from this template and data. Check the template.",
+	unsafe_asset: 'The template uses a picture or font from an address we block.',
+	resource_limit: 'The file is too big to make. Make the template or data smaller.',
+	timeout: 'The file took too long to make. Make the template simpler.',
 	renderer_failure: 'Something went wrong while making the file. Try again.',
 	internal_failure: 'Something went wrong on our side. Try again.',
 };
-
-/** Reads the pixel size that the design's marked canvas declares, when it declares one. */
-function canvasSize(source: string): TemplateFacts['canvas'] {
-	const tag = /<div\b[^>]*\bdata-thirds\s*=\s*["']canvas["'][^>]*>/i.exec(source)?.[0];
-	const style = tag && /\bstyle\s*=\s*(?:"([^"]*)"|'([^']*)')/i.exec(tag);
-	if (!style) return undefined;
-	const css = style[1] ?? style[2];
-	const read = (name: string) => {
-		const match = new RegExp(`(?:^|[;\\s])${name}\\s*:\\s*(\\d{3,4})px`, 'i').exec(css);
-		return match ? Number(match[1]) : undefined;
-	};
-	const width = read('width');
-	const height = read('height');
-	if (!width || !height || width < 320 || width > 7680 || height < 200 || height > 4320) {
-		return undefined;
-	}
-	return { width, height };
-}
 
 async function readTemplate(
 	this: IExecuteFunctions,
@@ -73,10 +55,7 @@ async function readTemplate(
 		? `/v1/templates/${templateId}/versions/${version}`
 		: `/v1/templates/${templateId}`;
 	const detail = await apiGet.call(this, path, undefined, itemIndex);
-	return {
-		version: (version || detail.latest_version) as number,
-		canvas: canvasSize(String(detail.source ?? '')),
-	};
+	return { version: (version || detail.latest_version) as number };
 }
 
 function readData(this: IExecuteFunctions, itemIndex: number): IDataObject {
@@ -263,11 +242,10 @@ export async function makeFile(
 	if (options.brandKitId) body.brand_kit_id = options.brandKitId;
 	if (kind === 'image') {
 		const format = this.getNodeParameter('imageFormat', itemIndex) as string;
-		const image: IDataObject = {
-			format,
-			width: (options.width as number) || facts.canvas?.width || 1280,
-			height: (options.height as number) || facts.canvas?.height || 720,
-		};
+		const image: IDataObject = { format };
+		// With no size, the API uses the size of the template canvas.
+		if (options.width) image.width = options.width;
+		if (options.height) image.height = options.height;
 		if (format !== 'png' && options.quality) image.quality = options.quality;
 		if (format !== 'jpeg' && options.transparent) image.transparent = true;
 		body.image = image;
